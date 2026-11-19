@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="description" content="PDF Studio 3.0 — browser-based PDF tools with OCR and Word export.">
+  <title>PDF Studio 3.0 — All-in-One PDF Tools</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
+  <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js" defer></script>
+  <script src="script.js" defer></script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">P</span><span>PDF<span class="brand-blue">Studio</span><small>VERSION 3.0</small></span></a>
+  <nav><a href="#tools">Tools</a><a href="#how">How it works</a><a href="#privacy">Privacy</a></nav>
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">◐</button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow"><i></i> YOUR DOCUMENT WORKSPACE · 3.0</span>
+    <h1>Everything you need<br>to work with <em>PDFs.</em></h1>
+    <p>Compress, convert, organize and customize documents with simple tools that run right in your browser.</p>
+    <a class="primary-btn" href="#tools">Explore all tools <span>→</span></a>
+    <div class="hero-stats"><span><b>15+</b><small>PDF utilities</small></span><span><b>100%</b><small>Browser based</small></span><span><b>Free</b><small>To use</small></span></div>
+  </div>
+  <div class="hero-art" aria-hidden="true">
+    <div class="art-glow"></div><div class="paper paper-back"></div>
+    <div class="paper paper-front"><span class="pdf-chip">PDF</span><b>Your files,<br>under control.</b><div class="fake-line"></div><div class="fake-line short"></div><div class="fake-line"></div><span class="check">✓</span></div>
+    <span class="float-tag tag-one">↘ Compress</span><span class="float-tag tag-two">⇄ Convert</span><span class="spark">✦</span>
+  </div>
+</section>
+
+<section class="trust-strip">
+  <div><span>⌁</span><b>Simple workflow</b><small>Choose a tool and get started</small></div>
+  <div><span>♧</span><b>Private by design</b><small>Local browser processing</small></div>
+  <div><span>ϟ</span><b>No account needed</b><small>Open and use instantly</small></div>
+</section>
+
+<section class="tool-section" id="tools">
+  <div class="section-heading"><div><span class="eyebrow">THE TOOLBOX</span><h2>What would you like to do?</h2><p>Pick a tool to start working on your document.</p></div>
+  <input id="searchTools" class="search" placeholder="⌕  Search tools..." aria-label="Search tools"></div>
+  <div class="filters" id="filters">
+    <button class="filter active" data-filter="All">All tools</button>
+    <button class="filter" data-filter="Convert">Convert</button>
+    <button class="filter" data-filter="Organize">Organize</button>
+    <button class="filter" data-filter="Optimize">Optimize</button>
+    <button class="filter" data-filter="Edit">Edit</button>
+  </div>
+  <div class="tool-grid" id="toolGrid"></div>
+</section>
+
+<section class="how-section" id="how">
+  <span class="eyebrow">MADE TO BE EASY</span><h2>Three steps. That's it.</h2>
+  <div class="steps"><article><span>01</span><b>Choose your files</b><p>Select a PDF or images from your device. No sign-up required.</p></article><article><span>02</span><b>Pick your settings</b><p>Choose the options you need and let PDF Studio do the work.</p></article><article><span>03</span><b>Download the result</b><p>Your processed file is ready to save directly to your device.</p></article></div>
+</section>
+
+<section class="privacy-section" id="privacy"><div class="privacy-icon">✓</div><div><h2>Your files stay yours.</h2><p>Files are processed locally in your browser and are not uploaded to a PDF Studio server. Avoid closing the tab while a task is running.</p></div></section>
+</main>
+
+<footer><a class="brand footer-brand" href="#"><span class="brand-mark">P</span>PDF<span class="brand-blue">Studio</span></a><span>© 2026 PDF Studio · Built for easier documents</span></footer>
+
+<div class="modal hidden" id="toolModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal-card">
+    <button class="close-btn" id="closeModal" aria-label="Close">×</button>
+    <span class="eyebrow">PDF STUDIO TOOL</span><h2 id="modalTitle">Tool</h2><p id="modalDescription" class="modal-description"></p>
+    <label class="drop-zone" id="dropZone"><input id="fileInput" type="file" multiple hidden><span class="upload-icon">↑</span><b>Choose files</b><small id="fileHint">Select files from your device</small><span class="browse-link">Browse files</span></label>
+    <div id="options" class="options"></div>
+    <div id="fileList" class="file-list"></div>
+    <div class="progress-wrap hidden" id="progressWrap"><div class="progress"><span id="progressBar"></span></div><small id="progressText">Processing…</small></div>
+    <div class="modal-actions"><button class="secondary-btn" id="cancelBtn">Cancel</button><button class="primary-btn" id="runBtn" disabled>Process & download <span>→</span></button></div>
+    <p class="error-text" id="errorText" role="alert"></p>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+</body>
+</html>
